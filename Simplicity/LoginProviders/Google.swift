@@ -83,7 +83,7 @@ public class Google: OAuth2 {
         request.httpBody = Helpers.queryString(requestParams)?.data(using: String.Encoding.utf8)
         
         let task = session.dataTask(with: request) { (data, response, error) -> Void in
-            guard let data = data, let json = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: Any], let accessToken = json["access_token"] as? String else {
+            guard let data = data, let json = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: Any], let accessToken = json["id_token"] as? String else {
                 callback(nil, LoginError.InternalSDKError) // This request should not fail.
                 return
             }
